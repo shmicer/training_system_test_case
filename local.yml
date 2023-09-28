@@ -13,21 +13,5 @@ services:
       - "8000:8000"
     env_file:
       - ./.envs/.local/.django
-      - ./.envs/.local/.postgres
-    depends_on:
-      - db
     stdin_open: true
     tty: true
-
-  db:
-    image: postgres:13.0-alpine
-    ports:
-      - "30333:5432"
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - .envs/.local/.postgres
-
-volumes:
-  postgres_data: {}
