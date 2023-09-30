@@ -25,9 +25,15 @@ class LessonSerializer(serializers.ModelSerializer):
 
 
 class LessonViewSerializer(serializers.ModelSerializer):
+    is_viewed = serializers.SerializerMethodField()
+
     class Meta:
         model = LessonView
         fields = ['id', 'lesson', 'viewed_seconds', 'is_viewed']
+
+    def get_is_viewed(self, obj):
+        return obj.viewed_seconds >= 0.8 * obj.lesson.duration
+
 
 
 

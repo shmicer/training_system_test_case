@@ -28,16 +28,6 @@ class LessonView(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
 
-    def update_view_status(self):
-        total_seconds = self.lesson.duration
-        if self.viewed_seconds >= 0.8 * total_seconds:
-            self.is_viewed = True
-        else:
-            self.is_viewed = False
-
-    def save(self, *args, **kwargs):
-        self.update_view_status()
-        super().save(*args, **kwargs)
 
 
 

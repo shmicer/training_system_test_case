@@ -7,14 +7,6 @@ from .serializers import  LessonSerializer, LessonViewSerializer
 from .models import Lesson, LessonView
 
 
-# class LessonListAPIView(generics.ListAPIView):
-#     serializer_class = LessonSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-#
-#     def get_queryset(self):
-#         user = self.request.user
-#         return Lesson.objects.filter(products__access__user=user)
-
 class LessonViewSet(viewsets.ModelViewSet):
     queryset = LessonView.objects.all()
     serializer_class = LessonViewSerializer
