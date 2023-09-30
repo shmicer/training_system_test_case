@@ -2,22 +2,25 @@
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 
-from .permissions import HasAccessToLesson
-from .serializers import  LessonSerializer, LessonViewSerializer
-from .models import Lesson, LessonView
+from .permissions import HasAccessToLesson, HasAccessToProduct, IsOwnerOrReadOnly
+from .serializers import LessonViewSerializer, ProductSerializer
+from .models import LessonView, Product, ProductAccess
 
 
 class LessonViewSet(viewsets.ModelViewSet):
-    queryset = LessonView.objects.all()
+    """
+    Return a queryset of all lessons for given user with a status of view.
+    """
+    queryset = LessonView.objects.all().select_related('lesson')
     serializer_class = LessonViewSerializer
     permission_classes = [ permissions.IsAuthenticated, HasAccessToLesson]
 
 
-    # def list(self, request, *args, **kwargs):
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #     serializer = self.get_serializer(queryset, many=True)
-    #     data  = [i for i in serializer.data]
-    #     return Response(data)
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all().prefetch_related('lessons__lessonview_set')
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly, HasAccessToProduct]
+
 
 
 
