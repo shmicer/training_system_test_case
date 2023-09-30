@@ -28,4 +28,5 @@ class LessonView(models.Model):
     viewed_seconds = models.IntegerField(default=0)
     is_viewed = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)

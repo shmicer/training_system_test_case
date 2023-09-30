@@ -18,7 +18,7 @@ class LessonViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, HasAccessToLesson]
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ViewSet):
     """
     Return a queryset of all products for authenticated
     user and retrieve product info such as status,
