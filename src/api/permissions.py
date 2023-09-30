@@ -2,7 +2,7 @@ from typing import Iterable
 
 from rest_framework import permissions
 
-from .models import ProductAccess
+from .models import ProductAccess, Product
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -23,6 +23,5 @@ class HasAccessToLesson(permissions.BasePermission):
 class HasAccessToProduct(permissions.BasePermission):
     message = "У вас нет доступа к этому продукту."
 
-    def has_object_permission(self, request, view, obj):
-        user = request.user
-        return obj.products.filter(productaccess__user=user).exists()
+    def has_permission(self, request, view):
+        return Product.objects.filter(productaccess__user=request.user)
