@@ -2,11 +2,8 @@ Django==4.2.2
 psycopg2-binary==2.9.6
 django-bootstrap-v5==1.0.11
 django-debug-toolbar==4.2.0
-pillow==9.5.0
 setuptools==68.0.0
 social-auth-app-django==5.2.0
 djangorestframework==3.14.0
-drf-spectacular==0.26.3
+drf-spectacular==0.26.5
 djoser==2.2.0
-qrcode==7.4.2
-aiogram==3.0.0b7
