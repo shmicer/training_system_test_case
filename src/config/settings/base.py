@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'api',
     'debug_toolbar',
+    'drf_spectacular',
     'rest_framework',
 ]
 
@@ -104,7 +105,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Simple Training System With Products and Lessons',
+    'DESCRIPTION': 'An API to get all the products and lessons, '
+                   'which allowed to current user and get some summary about products',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 

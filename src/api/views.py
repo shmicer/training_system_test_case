@@ -1,12 +1,12 @@
-
-from django.shortcuts import get_object_or_404
+from django.db.models import Count, Sum, Q
+from django.db.models.functions import Coalesce
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 
-from .models import LessonView, Product, Lesson
+from .models import LessonView, Product, Lesson, ProductAccess
 from .permissions import HasAccessToLesson, IsOwnerOrReadOnly
 from .serializers import (LessonViewSerializer, ProductSerializer,
-                          LessonListSerializer)
+                          LessonListSerializer, ProductSummarySerializer)
 
 
 class LessonViewSet(viewsets.ModelViewSet):
@@ -38,3 +38,24 @@ class ProductViewSet(viewsets.ViewSet):
         lessons = LessonView.objects.filter(user=self.request.user, product=product).select_related('lesson')
         serializer = LessonViewSerializer(lessons, many=True)
         return Response(serializer.data)
+
+
+class ProductSummaryViewSet(viewsets.ViewSet):
+    serializer_class = ProductSummarySerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly, ]
+
+    def retrieve(self, request, pk=None, *args, **kwargs):
+        viewed_filter = Q(lessons__lessonview__is_viewed=True)
+        product = Product.objects.annotate(
+            number_of_users=Count('productaccess__user', distinct=True),
+            total_lessons_viewed=Count('lessons__lessonview', filter=viewed_filter, distinct=True),
+            total_time_viewed=Sum('lessons__lessonview__viewed_seconds', filter=viewed_filter),
+        ).get(pk=pk)
+
+        total_user_count = ProductAccess.objects.all().values('user').distinct().count()
+        product.buy_percentage = int(100 * (product.number_of_users / total_user_count)) if total_user_count != 0 else 0
+
+        serializer = ProductSummarySerializer(product)
+        return Response(serializer.data)
+
+
