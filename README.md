@@ -35,47 +35,85 @@ Open a browser and go to http://localhost:8000
 
 ## API Documentation
 
-### Endpoints
+Our API is documented using OpenAPI. You can view the full API schema by clicking the link below:
 
-#### 1. Retrieve List of Lessons
+[OpenAPI Schema](./schema.yml)
 
-- **URL:** `/api/lessons/`
-- **Method:** `GET`
-- **Description:** Retrieve a list of all lessons for authenticated user with a status of view.
-- **Parameters:** None
-- **Response:**
-  - Status Code: 200 OK
-  - Body: JSON array of lessons.
+[//]: # (### Endpoints)
 
-#### 2. Retrieve Product List
+[//]: # ()
+[//]: # (#### 1. Retrieve List of Lessons)
 
-- **URL:** `/api/products/`
-- **Method:** `GET`
-- **Description:** Return a list of all products for authenticated user.
-- **Parameters:** None
-- **Response:**
-  - Status Code: 200 OK
-  - Body: JSON array of lessons.
+[//]: # ()
+[//]: # (- **URL:** `/api/lessons/`)
 
-#### 3. Retrieve Product Lessons
+[//]: # (- **Method:** `GET`)
 
-- **URL:** `/api/products/{product_id}/`
-- **Method:** `GET`
-- **Description:** Retrieve lessons for a specific product.
-- **Parameters:**
-  - `{product_id}`: ID of the product.
-- **Response:**
-  - Status Code: 200 OK
-  - Body: JSON object with product lessons.
+[//]: # (- **Description:** Retrieve a list of all lessons for authenticated user with a status of view.)
 
-#### 3. Retrieve Product Summary
+[//]: # (- **Parameters:** None)
 
-- **URL:** `/api/summary/{product_id}/`
-- **Method:** `GET`
-- **Description:** Retrieve details for a specific product.
-- **Parameters:**
-  - `{product_id}`: ID of the product.
-- **Response:**
-  - Status Code: 200 OK
-  - Body: JSON object with product summary.
+[//]: # (- **Response:**)
+
+[//]: # (  - Status Code: 200 OK)
+
+[//]: # (  - Body: JSON array of lessons.)
+
+[//]: # ()
+[//]: # (#### 2. Retrieve Product List)
+
+[//]: # ()
+[//]: # (- **URL:** `/api/products/`)
+
+[//]: # (- **Method:** `GET`)
+
+[//]: # (- **Description:** Return a list of all products for authenticated user.)
+
+[//]: # (- **Parameters:** None)
+
+[//]: # (- **Response:**)
+
+[//]: # (  - Status Code: 200 OK)
+
+[//]: # (  - Body: JSON array of lessons.)
+
+[//]: # ()
+[//]: # (#### 3. Retrieve Product Lessons)
+
+[//]: # ()
+[//]: # (- **URL:** `/api/products/{product_id}/`)
+
+[//]: # (- **Method:** `GET`)
+
+[//]: # (- **Description:** Retrieve lessons for a specific product.)
+
+[//]: # (- **Parameters:**)
+
+[//]: # (  - `{product_id}`: ID of the product.)
+
+[//]: # (- **Response:**)
+
+[//]: # (  - Status Code: 200 OK)
+
+[//]: # (  - Body: JSON object with product lessons.)
+
+[//]: # ()
+[//]: # (#### 3. Retrieve Product Summary)
+
+[//]: # ()
+[//]: # (- **URL:** `/api/summary/{product_id}/`)
+
+[//]: # (- **Method:** `GET`)
+
+[//]: # (- **Description:** Retrieve details for a specific product.)
+
+[//]: # (- **Parameters:**)
+
+[//]: # (  - `{product_id}`: ID of the product.)
+
+[//]: # (- **Response:**)
+
+[//]: # (  - Status Code: 200 OK)
+
+[//]: # (  - Body: JSON object with product summary.)
 
