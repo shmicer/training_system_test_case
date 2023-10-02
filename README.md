@@ -5,11 +5,12 @@ A simple Django Rest Framework application for training system.
 
 ## Description
 
-- Currently there are 7 currencies available for conversion: ['AED', 'USD', 'EUR', 'RUB', 'TRY', 'CNY', 'HKD'].
-- Courses are requested from the service https://currencyapi.com/
-- In order to reduce the number of requests to a third-party service, the data received from the service is cached in Redis every 24 hours.
-- A request for current courses is made using a deferred task in Celery on a schedule once every 24 hours.
-
+- There are list of available lessons for user;
+- User have a list of products available for him;
+- User can retrieve product information with a details such as status of view, 
+view time and the last view date of lesson;
+- Admin can retrieve the summary of product information: number of users, total viewed lessons,
+total time of view in seconds, percentage of buying this product.
 
 ## Installation
 

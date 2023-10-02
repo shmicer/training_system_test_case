@@ -55,7 +55,7 @@ class ProductViewSet(viewsets.ViewSet):
 )
 class ProductSummaryViewSet(viewsets.ViewSet):
     serializer_class = ProductSummarySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
 
     def retrieve(self, request, pk=None, *args, **kwargs):
         viewed_filter = Q(lessons__lessonview__is_viewed=True)
