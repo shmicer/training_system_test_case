@@ -52,3 +52,4 @@ class ProductSummarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['name', 'number_of_users', 'buy_percentage', 'total_lessons_viewed', 'total_time_viewed']
+
