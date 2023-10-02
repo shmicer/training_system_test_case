@@ -10,7 +10,7 @@ from .serializers import (LessonListSerializer, LessonViewSerializer,
 
 
 @extend_schema(
-    summary='Return a queryset of all lessons for authenticated user with a status of view',
+    summary='Return a list of all lessons for authenticated user with a status of view',
 )
 class LessonViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -25,15 +25,10 @@ class LessonViewSet(viewsets.ViewSet):
 
 class ProductViewSet(viewsets.ViewSet):
 
-    """
-    Return a queryset of all products for authenticated
-    user and retrieve product info such as status,
-    view time and the last view date of lesson.
-    """
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly, ]
 
     @extend_schema(
-        summary='Return a queryset of all products for authenticated user',
+        summary='Return a list of all products for authenticated user',
     )
     def list(self, request, *args, **kwargs):
         queryset = Product.objects.filter(productaccess__user=self.request.user)
@@ -41,7 +36,7 @@ class ProductViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        summary='Retrieve product info such as status, view time and the last view date of lesson',
+        summary='Retrieve product lessons list with status, view time and the last view date of lesson',
     )
     def retrieve(self, request, pk=None, *args, **kwargs):
         product = Product.objects.get(pk=pk)
