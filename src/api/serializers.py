@@ -1,7 +1,6 @@
-from django.db.models import Count, Sum
 from rest_framework import serializers
 
-from .models import Lesson, LessonView, Product, ProductAccess
+from .models import Lesson, LessonView, Product
 
 
 class LessonViewSerializer(serializers.ModelSerializer):
@@ -11,6 +10,7 @@ class LessonViewSerializer(serializers.ModelSerializer):
         model = LessonView
         fields = ['lesson_name', 'last_view', 'viewed_seconds', 'is_viewed']
 
+
 class LessonListSerializer(serializers.ModelSerializer):
     lesson_name = serializers.ReadOnlyField(source='lesson.name')
     product_name = serializers.ReadOnlyField(source='product.name')
@@ -19,9 +19,9 @@ class LessonListSerializer(serializers.ModelSerializer):
         model = LessonView
         fields = ['product_name', 'lesson_name', 'last_view', 'viewed_seconds', 'is_viewed']
 
+
 class LessonSerializer(serializers.ModelSerializer):
     lessonview_set = LessonViewSerializer(many=True, read_only=True)
-
 
     class Meta:
         model = Lesson
@@ -51,5 +51,5 @@ class ProductSummarySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['name', 'number_of_users', 'buy_percentage', 'total_lessons_viewed', 'total_time_viewed']
-
+        fields = ['name', 'number_of_users', 'buy_percentage',
+                  'total_lessons_viewed', 'total_time_viewed']

@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import LessonViewSet, ProductViewSet, ProductSummaryViewSet
+from .views import LessonViewSet, ProductSummaryViewSet, ProductViewSet
 
 router = DefaultRouter()
 router.register(r'lessons', LessonViewSet, basename='lesson')
