@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Simple Training System With Products and Lessons
+  version: 1.0.0
+  description: An API to get all the products and lessons, which allowed to current
+    user and get some summary about products
+paths:
+  /api/lessons/:
+    get:
+      operationId: lessons_retrieve
+      description: Return a queryset of all lessons for authenticated user with a
+        status of view.
+      tags:
+      - lessons
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/products/:
+    get:
+      operationId: products_retrieve
+      description: |-
+        Return a queryset of all products for authenticated
+        user and retrieve product info such as status,
+        view time and the last view date of lesson.
+      tags:
+      - products
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/products/{id}/:
+    get:
+      operationId: products_retrieve_2
+      description: |-
+        Return a queryset of all products for authenticated
+        user and retrieve product info such as status,
+        view time and the last view date of lesson.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - products
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/summary/{id}/:
+    get:
+      operationId: summary_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - summary
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSummary'
+          description: ''
+components:
+  schemas:
+    ProductSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        number_of_users:
+          type: integer
+        buy_percentage:
+          type: integer
+        total_lessons_viewed:
+          type: integer
+        total_time_viewed:
+          type: integer
+      required:
+      - buy_percentage
+      - name
+      - number_of_users
+      - total_lessons_viewed
+      - total_time_viewed
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

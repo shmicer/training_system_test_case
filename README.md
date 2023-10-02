@@ -37,7 +37,7 @@ Open a browser and go to http://localhost:8000
 
 Our API is documented using OpenAPI. You can view the full API schema by clicking the link below:
 
-[OpenAPI Schema](./schema.yml)
+[OpenAPI Schema](./Simple Training System With Products and Lessons.yaml)
 
 [//]: # (### Endpoints)
 
